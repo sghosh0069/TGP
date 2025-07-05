@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Welcome Form | TGP Jewellers</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: linear-gradient(135deg, #faf9f7 0%, #f5f3f0 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #4a4a4a;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+      background: #fefdfb;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      overflow: hidden;
+      border: 1px solid #f0ede8;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #8b2635 0%, #a8374a 100%);
+      color: #fefdfb;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+
+    .logo-container {
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-container img {
+      max-width: 200px;
+      width: auto;
+      height: auto;
+      max-height: 120px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      object-fit: contain;
+    }
+
+    .header h1 {
+      font-size: 2.4em;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    .header .subtitle {
+      font-size: 1.2em;
+      opacity: 0.95;
+      position: relative;
+      z-index: 1;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    .social-links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-links a {
+      color: #fefdfb;
+      font-size: 1.5em;
+      transition: all 0.3s ease;
+      opacity: 0.9;
+      text-decoration: none;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .social-links a:hover {
+      opacity: 1;
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .social-links a.instagram:hover {
+      background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    }
+
+    .social-links a.facebook:hover {
+      background: #1877f2;
+    }
+
+    .social-links a.whatsapp:hover {
+      background: #25d366;
+    }
+
+    .form-container {
+      padding: 50px 40px;
+      background: #fefdfb;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 30px;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #5a5a5a;
+      font-size: 1em;
+      letter-spacing: 0.3px;
+    }
+
+    .required::after {
+      content: ' *';
+      color: #8b2635;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 16px 18px;
+      border: 2px solid #e8e3dd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: #faf9f7;
+      color: #4a4a4a;
+      font-family: inherit;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #8b2635;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(139, 38, 53, 0.1);
+    }
+
+    input:hover, select:hover, textarea:hover {
+      border-color: #a8374a;
+      background: #ffffff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+      line-height: 1.5;
+    }
+
+    select[multiple] {
+      min-height: 130px;
+      padding: 10px;
+    }
+
+    select[multiple] option {
+      padding: 8px;
+      margin: 2px 0;
+      border-radius: 4px;
+    }
+
+    select[multiple] option:checked {
+      background: #8b2635;
+      color: white;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-top: 30px;
+      padding: 25px;
+      background: #f7f5f2;
+      border-radius: 10px;
+      border: 2px solid #ede8e1;
+    }
+
+    .checkbox-container input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      margin: 0;
+      cursor: pointer;
+      accent-color: #8b2635;
+      transform: scale(1.2);
+    }
+
+    .checkbox-container label {
+      margin: 0;
+      font-weight: 500;
+      color: #5a5a5a;
+      cursor: pointer;
+      line-height: 1.5;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #8b2635 0%, #a8374a 100%);
+      color: #fefdfb;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 35px;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.5px;
+      font-family: inherit;
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .submit-btn:hover::before {
+      left: 100%;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(139, 38, 53, 0.25);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .help-text {
+      font-size: 0.9em;
+      color: #8a8a8a;
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    .subsection {
+      margin-top: 15px;
+      padding-left: 20px;
+      border-left: 3px solid #8b2635;
+      background: #f9f8f6;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Loading spinner */
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 10px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Success and error messages */
+    .message {
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: none;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .message.success {
+      background: #e8f5e8;
+      color: #2e7d32;
+      border: 1px solid #c8e6c9;
+    }
+
+    .message.error {
+      background: #ffebee;
+      color: #c62828;
+      border: 1px solid #ffcdd2;
+    }
+
+    /* Placeholder styling */
+    ::placeholder {
+      color: #b0b0b0;
+      opacity: 1;
+    }
+
+    /* Custom select arrow */
+    select:not([multiple]) {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b2635' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+      background-size: 20px;
+      padding-right: 45px;
+      appearance: none;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 10px;
+        border-radius: 12px;
+      }
+
+      .form-container {
+        padding: 30px 25px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .header h1 {
+        font-size: 2em;
+      }
+
+      .header {
+        padding: 30px 20px;
+      }
+
+      .logo-container img {
+        max-width: 160px;
+        max-height: 100px;
+        width: auto;
+        height: auto;
+      }
+
+      .social-links {
+        gap: 15px;
+      }
+
+      .social-links a {
+        font-size: 1.3em;
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    /* Success animation */
+    @keyframes successPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .success-animation {
+      animation: successPulse 0.6s ease-in-out;
+    }
+
+    /* Error state */
+    .error {
+      border-color: #d32f2f !important;
+      background: #fff5f5 !important;
+    }
+
+    .error-message {
+      color: #d32f2f;
+      font-size: 0.9em;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="logo-container">
+      <img src="https://res.cloudinary.com/dtfocegao/image/upload/v1751702880/Logo-1696443500635_dhsoyc.png" alt="TGP Jewellers Logo" border="0">
+    </div>
+    <h1>Customer Welcome Form</h1>
+    <div class="subtitle">TGP Jewellers</div>
+    <div class="social-links">
+      <a href="https://www.instagram.com/tgpjewellers/?hl=en" target="_blank" title="Follow us on Instagram" class="instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.facebook.com/tgpjewellers" target="_blank" title="Like us on Facebook" class="facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://wa.me/message/WMFPWKWTJVW2P1" target="_blank" title="WhatsApp us" class="whatsapp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div id="successMessage" class="message success">
+      <i class="fas fa-check-circle"></i> Thank you for submitting your information! We will contact you soon via your preferred method.
+    </div>
+    
+    <div id="errorMessage" class="message error">
+      <i class="fas fa-exclamation-circle"></i> <span id="errorText">There was an error submitting your form. Please try again.</span>
+    </div>
+
+    <form id="customerForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="fullName" class="required">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+          <div class="error-message" id="fullNameError">Please enter your full name</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="whatsapp" class="required">WhatsApp Number</label>
+            <input type="tel" id="whatsapp" name="whatsapp" pattern="[0-9]{10}" maxlength="10" required placeholder="10-digit number">
+            <div class="help-text">Enter your 10-digit WhatsApp number</div>
+            <div class="error-message" id="whatsappError">Please enter a valid 10-digit WhatsApp number</div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="your.email@example.com">
+            <div class="error-message" id="emailError">Please enter a valid email address</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea id="address" name="address" placeholder="Enter your complete address including city, state, and PIN code"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="birthday">Birthday</label>
+            <input type="date" id="birthday" name="birthday">
+          </div>
+
+          <div class="form-group">
+            <label for="anniversary">Anniversary</label>
+            <input type="date" id="anniversary" name="anniversary">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="material" class="required">Choose Material</label>
+          <select id="material" name="material" required>
+            <option value="">--Select Material--</option>
+            <option value="Gold">Gold</option>
+            <option value="Silver">Silver</option>
+          </select>
+          <div class="error-message" id="materialError">Please select a material</div>
+          
+          <div id="goldPuritySection" class="subsection hidden">
+            <label for="goldPurity" class="required">Gold Purity</label>
+            <select id="goldPurity" name="goldPurity">
+              <option value="">--Select Purity--</option>
+              <option value="22KT">22KT</option>
+              <option value="18KT">18KT</option>
+              <option value="Other">Other (Specify)</option>
+            </select>
+            <div class="error-message" id="goldPurityError">Please select gold purity</div>
+            
+            <div id="customPuritySection" class="hidden" style="margin-top: 15px;">
+              <label for="customPurity" class="required">Specify Purity</label>
+              <input type="text" id="customPurity" name="customPurity" placeholder="Enter custom purity (e.g., 24KT, 14KT)">
+              <div class="error-message" id="customPurityError">Please specify the purity</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="interests">Interested In</label>
+          <select id="interests" name="interests" multiple>
+            <option value="Bangles">Bangles</option>
+            <option value="Bala">Bala</option>
+            <option value="Necklace">Necklace</option>
+            <option value="Ladies Ring">Ladies Ring</option>
+            <option value="Gents Ring">Gents Ring</option>
+            <option value="Bracelet">Bracelet</option>
+            <option value="Ear Rings/Tops">Ear Rings/Tops</option>
+            <option value="Chains">Chains</option>
+            <option value="Jhumka">Jhumka</option>
+            <option value="Magalsutra">Magalsutra</option>
+            <option value="Coins">Coins</option>
+            <option value="Pedants">Pedants</option>
+            <option value="Lockets">Lockets</option>
+            <option value="Maang Tikka">Maang Tikka</option>
+            <option value="Nosepin/Nose Ring">Nosepin/Nose Ring</option>
+            <option value="Bridal Set">Bridal Set</option>
+            <option value="Astrological Gems">Astrological Gems</option>
+            <option value="Diamond Jewellery">Diamond Jewellery</option>
+          </select>
+          <div class="help-text">Hold Ctrl (Cmd on Mac) to select multiple options</div>
+        </div>
+
+        <div class="form-group">
+          <label for="contactMethod" class="required">Preferred Contact Method</label>
+          <select id="contactMethod" name="contactMethod" required>
+            <option value="">--Select your preferred method--</option>
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="Call">Call</option>
+            <option value="Email">Email</option>
+          </select>
+          <div class="error-message" id="contactMethodError">Please select a contact method</div>
+        </div>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="consent" name="consent" required>
+          <label for="consent" class="required">I agree to receive WhatsApp messages from TGP Jewellers for updates about new collections, special offers, and important notifications</label>
+        </div>
+        <div class="error-message" id="consentError">You must consent to receive WhatsApp messages to proceed</div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span id="submitText">Submit Form</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Google Apps Script Web App URL
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwmGHP2nXTpyaweYoFKE6lrsrnWx-3dNc2NajQxBQmK75pnMeGcdtY5fZxJrRegzrhTdw/exec';
+
+  // Handle material selection and gold purity subsection
+  document.getElementById("material").addEventListener("change", function() {
+    const goldPuritySection = document.getElementById("goldPuritySection");
+    const goldPurity = document.getElementById("goldPurity");
+    
+    if (this.value === "Gold") {
+      goldPuritySection.classList.remove("hidden");
+      goldPurity.required = true;
+    } else {
+      goldPuritySection.classList.add("hidden");
+      goldPurity.required = false;
+      goldPurity.value = "";
+      document.getElementById("customPuritySection").classList.add("hidden");
+      document.getElementById("customPurity").value = "";
+    }
+  });
+
+  // Handle custom purity input
+  document.getElementById("goldPurity").addEventListener("change", function() {
+    const customPuritySection = document.getElementById("customPuritySection");
+    const customPurity = document.getElementById("customPurity");
+    
+    if (this.value === "Other") {
+      customPuritySection.classList.remove("hidden");
+      customPurity.required = true;
+    } else {
+      customPuritySection.classList.add("hidden");
+      customPurity.required = false;
+      customPurity.value = "";
+    }
+  });
+
+  // Form submission handler
+  document.getElementById("customerForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    // Clear previous messages
+    hideMessages();
+    clearErrors();
+    
+    let isValid = true;
+    
+    // Validate Full Name
+    const fullName = document.getElementById("fullName").value.trim();
+    if (!fullName) {
+      showError("fullName", "fullNameError");
+      isValid = false;
+    }
+
+    // Validate WhatsApp Number
+    const whatsapp = document.getElementById("whatsapp").value.trim();
+    if (!/^\d{10}$/.test(whatsapp)) {
+      showError("whatsapp", "whatsappError");
+      isValid = false;
+    }
+
+    // Validate Email if provided
+    const email = document.getElementById("email").value.trim();
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError("email", "emailError");
+      isValid = false;
+    }
+
+    // Validate Material Selection
+    const material = document.getElementById("material").value;
+    if (!material) {
+      showError("material", "materialError");
+      isValid = false;
+    }
+
+    // Validate Gold Purity if Gold is selected
+    if (material === "Gold") {
+      const goldPurity = document.getElementById("goldPurity").value;
+      if (!goldPurity) {
+        showError("goldPurity", "goldPurityError");
+        isValid = false;
+      }
+      
+      // Validate custom purity if "Other" is selected
+      if (goldPurity === "Other") {
+        const customPurity = document.getElementById("customPurity").value.trim();
+        if (!customPurity) {
+          showError("customPurity", "customPurityError");
+          isValid = false;
+        }
+      }
+    }
+
+    // Validate Contact Method
+    const contactMethod = document.getElementById("contactMethod").value;
+    if (!contactMethod) {
+      showError("contactMethod", "contactMethodError");
+      isValid = false;
+    }
+
+    // Validate Consent Checkbox
+    if (!document.getElementById("consent").checked) {
+      showError("consent", "consentError");
+      isValid = false;
+    }
+
+    if (!isValid) {
+      return;
+    }
+
+    // Show loading state
+    showLoading();
+
+    // Collect form data
+    const formData = new FormData();
+    formData.append('fullName', fullName);
+    formData.append('whatsapp', whatsapp);
+    formData.append('email', email);
+    formData.append('address', document.getElementById("address").value.trim());
+    formData.append('birthday', document.getElementById("birthday").value);
+    formData.append('anniversary', document.getElementById("anniversary").value);
+    formData.append('material', material);
+    
+    if (material === "Gold") {
+      const goldPurity = document.getElementById("goldPurity").value;
+      formData.append('goldPurity', goldPurity);
+      if (goldPurity === "Other") {
+        formData.append('customPurity', document.getElementById("customPurity").value.trim());
+      }
+    }
+    
+    const interests = Array.from(document.getElementById("interests").selectedOptions).map(option => option.value);
+    formData.append('interests', interests.join(', '));
+    formData.append('contactMethod', contactMethod);
+    formData.append('consent', document.getElementById("consent").checked);
+    formData.append('timestamp', new Date().toISOString());
+
+    // Submit to Google Apps Script
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      hideLoading();
+      
+      if (data.result === 'success') {
+        showSuccess();
+        document.getElementById("customerForm").reset();
+        document.getElementById("goldPuritySection").classList.add("hidden");
+        document.getElementById("customPuritySection").classList.add("hidden");
+      } else {
+        showError(data.error || 'There was an error submitting your form. Please try again.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      hideLoading();
+      showErrorMessage('Network error. Please check your connection and try again.');
+    });
+  });
+
+  function showError(inputId, errorId) {
+    document.getElementById(inputId).classList.add("error");
+    document.getElementById(errorId).classList.add("show");
+  }
+
+  function clearErrors() {
+    const errorInputs = document.querySelectorAll(".error");
+    const errorMessages = document.querySelectorAll(".error-message");
+    
+    errorInputs.forEach(input => input.classList.remove("error"));
+    errorMessages.forEach(message => message.classList.remove("show"));
+  }
+
+  function showLoading() {
+    const submitBtn = document.getElementById("submitBtn");
+    const submitText = document.getElementById("submitText");
+    
+    submitBtn.disabled = true;
+    submitText.innerHTML = '<span class="loading-spinner"></span>Submitting...';
+  }
+
+  function hideLoading() {
+    const submitBtn = document.getElementById("submitBtn");
+    const submitText = document.getElementById("submitText");
+    
+    submitBtn.disabled = false;
+    submitText.innerHTML = 'Submit Form';
+  }
+
+  function showSuccess() {
+    const successMessage = document.getElementById("successMessage");
+    successMessage.style.display = 'block';
+    
+    // Scroll to success message
+    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    // Hide success message after 5 seconds
+    setTimeout(() => {
+      successMessage.style.display = 'none';
+    }, 5000);
+  }
+
+  function showErrorMessage(message) {
+    const errorMessage = document.getElementById("errorMessage");
+    const errorText = document.getElementById("errorText");
+    
+    errorText.textContent = message;
+    errorMessage.style.display = 'block';
+    
+    // Scroll to error message
+    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    // Hide error message after 5 seconds
+    setTimeout(() => {
+      errorMessage.style.display = 'none';
+    }, 5000);
+  }
+
+  function hideMessages() {
+    document.getElementById("successMessage").style.display = 'none';
+    document.getElementById("errorMessage").style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
